@@ -46,7 +46,6 @@ jobs:
         run: |
           curl -L -r 0-1023 -o sample.part "${{ inputs.ipa_url }}" > /dev/null 2>&1
           file_type=$(file --mime-type -b sample.part)
-
           if [[ "$file_type" != "application/x-ios-app" && "$file_type" != "application/zip" ]]; then
             echo "::error::Validation failed: The file is not a valid IPA file. Detected type: $file_type."
             exit 1
@@ -60,7 +59,7 @@ jobs:
 
       - name: Cache Theos
         id: theos
-        uses: actions/cache@v4.0.1
+        uses: actions/cache@v4  # Updated to the latest version
         env:
           cache-name: theos_cache_67db2ab
         with:
